@@ -10,6 +10,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import eu.openminted.registry.domain.ObjectFactory;
 import org.apache.log4j.Logger;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -53,7 +54,7 @@ public class Utils {
     public static <T> String objToJson(T paging){
 
         ObjectMapper mapper = new ObjectMapper();
-
+        mapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
         try {
             return mapper.writeValueAsString(paging);
         } catch (JsonProcessingException e) {
